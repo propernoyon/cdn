@@ -4,7 +4,7 @@ function toriqul_datalist($datalist_id, $hidden_field, $sql, $value = '', $requi
     $input_id = $hidden_field . $rdd;
     $showval = '';
 
-    $content='';
+
 
     if ($value != '') {
         // Extracting columns from the SQL query
@@ -34,23 +34,23 @@ function toriqul_datalist($datalist_id, $hidden_field, $sql, $value = '', $requi
     }
 
  
-    echo $content= '<input list="'.$datalist_id.'" id="'.$input_id.'" name="'.$input_id.'" autocomplete="off" type="text" value="'.$showval.'" '.($required ? 'required' : '').'>';
-    echo $content= '<datalist id="'.$datalist_id.'">';
+    echo '<input list="'.$datalist_id.'" id="'.$input_id.'" name="'.$input_id.'" autocomplete="off" type="text" value="'.$showval.'" '.($required ? 'required' : '').'>';
+    echo '<datalist id="'.$datalist_id.'">';
     
     $res = mysql_query($sql);
     if ($res) {
         while ($data = mysql_fetch_row($res)) {
-            echo $content= '<option value="'.$data[1].'" data-value="'.$data[0].'"></option>';
+            echo '<option value="'.$data[1].'" data-value="'.$data[0].'"></option>';
         }
     } else {
         echo "Error: " . mysql_error();
     }
-    echo $content= '</datalist>';
+    echo  '</datalist>';
 
    
-    echo $content= '<input type="hidden" name="'.$hidden_field.'" id="'.$hidden_field.'" value="'.$value.'" '.($required ? 'required' : '').'>';
+    echo  '<input type="hidden" name="'.$hidden_field.'" id="'.$hidden_field.'" value="'.$value.'" '.($required ? 'required' : '').'>';
 
-    echo $content= '<script>
+    echo  '<script>
     document.addEventListener("DOMContentLoaded", function() {
         const setDataValue = function(inputId, hiddenId, dataListId) {
             const inputElement = document.getElementById(inputId);
@@ -98,9 +98,7 @@ function toriqul_datalist($datalist_id, $hidden_field, $sql, $value = '', $requi
     });
     </script>';
 
- return [
-    'key1' => $content
-];
+ return $content;
 }
 
 ?>
