@@ -98,7 +98,7 @@ function toriqul_datalist($datalist_id, $hidden_field, $sql, $value = '', $requi
     });
     </script>';
 
- return $content;
+
 }
 
 ?>
