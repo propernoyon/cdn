@@ -1,10 +1,8 @@
- <?php
+<?php
 function toriqul_datalist($datalist_id, $hidden_field, $sql, $value = '', $required = '') {
     $rdd = mt_rand(1, 9999);
     $input_id = $hidden_field . $rdd;
     $showval = '';
-
-
 
     if ($value != '') {
         // Extracting columns from the SQL query
@@ -33,7 +31,7 @@ function toriqul_datalist($datalist_id, $hidden_field, $sql, $value = '', $requi
         }
     }
 
- 
+    // Echo the input and datalist elements
     echo '<input list="'.$datalist_id.'" id="'.$input_id.'" name="'.$input_id.'" autocomplete="off" type="text" value="'.$showval.'" '.($required ? 'required' : '').'>';
     echo '<datalist id="'.$datalist_id.'">';
     
@@ -45,17 +43,59 @@ function toriqul_datalist($datalist_id, $hidden_field, $sql, $value = '', $requi
     } else {
         echo "Error: " . mysql_error();
     }
-    echo  '</datalist>';
+    echo '</datalist>';
 
-   
-    echo  '<input type="hidden" name="'.$hidden_field.'" id="'.$hidden_field.'" value="'.$value.'" '.($required ? 'required' : '').'>';
+    // Echo the hidden input element
+    echo '<input type="hidden" name="'.$hidden_field.'" id="'.$hidden_field.'" value="'.$value.'" '.($required ? 'required' : '').'>';
 
-    echo  '<script>
-   document.addEventListener("DOMContentLoaded",function(){!function(e,t,n){const d=document.getElementById(e),l=document.getElementById(t),u=document.getElementById(n);d.addEventListener("input",function(){const e=u.options;let t=!1;for(let n=0;n<e.length;n++)if(e[n].value===d.value){const d=e[n].getAttribute("data-value");l.value=d,t=!0;break}t||(l.value="")}),d.addEventListener("blur",function(){const e=u.options;let t=!1;for(let n=0;n<e.length;n++)if(e[n].value===d.value){const d=e[n].getAttribute("data-value");l.value=d,t=!0;break}t||(l.value="",d.value="",d.placeholder="Not Found")})}("'.$input_id.'","'.$hidden_field.'","'.$datalist_id.'")});
+    // Embedding JavaScript
+    echo '<script>
+    // document.addEventListener("DOMContentLoaded", function() {
+    //     const setDataValue = function(inputId, hiddenId, dataListId) {
+    //         const inputElement = document.getElementById(inputId);
+    //         const hiddenInputElement = document.getElementById(hiddenId);
+    //         const dataList = document.getElementById(dataListId);
+
+    //         const checkMatch = function() {
+    //             const options = dataList.options;
+    //             let found = false;
+    //             for (let i = 0; i < options.length; i++) {
+    //                 if (options[i].value === inputElement.value) {
+    //                     const dataValue = options[i].getAttribute("data-value");
+    //                     hiddenInputElement.value = dataValue;
+    //                     found = true;
+    //                     break;
+    //                 }
+    //             }
+    //             if (!found) {
+    //                 hiddenInputElement.value = "";
+    //                 inputElement.value = "";
+    //                 inputElement.placeholder = "Not Found";
+    //             }
+    //         };
+
+    //         inputElement.addEventListener("input", function() {
+    //             const options = dataList.options;
+    //             let found = false;
+    //             for (let i = 0; i < options.length; i++) {
+    //                 if (options[i].value === inputElement.value) {
+    //                     const dataValue = options[i].getAttribute("data-value");
+    //                     hiddenInputElement.value = dataValue;
+    //                     found = true;
+    //                     break;
+    //                 }
+    //             }
+    //             if (!found) {
+    //                 hiddenInputElement.value = "";
+    //             }
+    //         });
+
+    //         inputElement.addEventListener("blur", checkMatch);
+    //     };
+
+    //     setDataValue("'.$input_id.'", "'.$hidden_field.'", "'.$datalist_id.'");
+    // });
+    document.addEventListener("DOMContentLoaded",function(){!function(e,t,n){const d=document.getElementById(e),l=document.getElementById(t),u=document.getElementById(n);d.addEventListener("input",function(){const e=u.options;let t=!1;for(let n=0;n<e.length;n++)if(e[n].value===d.value){const d=e[n].getAttribute("data-value");l.value=d,t=!0;break}t||(l.value="")}),d.addEventListener("blur",function(){const e=u.options;let t=!1;for(let n=0;n<e.length;n++)if(e[n].value===d.value){const d=e[n].getAttribute("data-value");l.value=d,t=!0;break}t||(l.value="",d.value="",d.placeholder="Not Found")})}("'.$input_id.'","'.$hidden_field.'","'.$datalist_id.'")});
     </script>';
-
-
 }
-
 ?>
-
