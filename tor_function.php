@@ -50,51 +50,52 @@ function toriqul_datalist($datalist_id, $hidden_field, $sql, $value = '', $requi
 
     // Embedding JavaScript
     echo '<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const setDataValue = function(inputId, hiddenId, dataListId) {
-            const inputElement = document.getElementById(inputId);
-            const hiddenInputElement = document.getElementById(hiddenId);
-            const dataList = document.getElementById(dataListId);
+    // document.addEventListener("DOMContentLoaded", function() {
+    //     const setDataValue = function(inputId, hiddenId, dataListId) {
+    //         const inputElement = document.getElementById(inputId);
+    //         const hiddenInputElement = document.getElementById(hiddenId);
+    //         const dataList = document.getElementById(dataListId);
 
-            const checkMatch = function() {
-                const options = dataList.options;
-                let found = false;
-                for (let i = 0; i < options.length; i++) {
-                    if (options[i].value === inputElement.value) {
-                        const dataValue = options[i].getAttribute("data-value");
-                        hiddenInputElement.value = dataValue;
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found) {
-                    hiddenInputElement.value = "";
-                    inputElement.value = "";
-                    inputElement.placeholder = "Not Found";
-                }
-            };
+    //         const checkMatch = function() {
+    //             const options = dataList.options;
+    //             let found = false;
+    //             for (let i = 0; i < options.length; i++) {
+    //                 if (options[i].value === inputElement.value) {
+    //                     const dataValue = options[i].getAttribute("data-value");
+    //                     hiddenInputElement.value = dataValue;
+    //                     found = true;
+    //                     break;
+    //                 }
+    //             }
+    //             if (!found) {
+    //                 hiddenInputElement.value = "";
+    //                 inputElement.value = "";
+    //                 inputElement.placeholder = "Not Found";
+    //             }
+    //         };
 
-            inputElement.addEventListener("input", function() {
-                const options = dataList.options;
-                let found = false;
-                for (let i = 0; i < options.length; i++) {
-                    if (options[i].value === inputElement.value) {
-                        const dataValue = options[i].getAttribute("data-value");
-                        hiddenInputElement.value = dataValue;
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found) {
-                    hiddenInputElement.value = "";
-                }
-            });
+    //         inputElement.addEventListener("input", function() {
+    //             const options = dataList.options;
+    //             let found = false;
+    //             for (let i = 0; i < options.length; i++) {
+    //                 if (options[i].value === inputElement.value) {
+    //                     const dataValue = options[i].getAttribute("data-value");
+    //                     hiddenInputElement.value = dataValue;
+    //                     found = true;
+    //                     break;
+    //                 }
+    //             }
+    //             if (!found) {
+    //                 hiddenInputElement.value = "";
+    //             }
+    //         });
 
-            inputElement.addEventListener("blur", checkMatch);
-        };
+    //         inputElement.addEventListener("blur", checkMatch);
+    //     };
 
-        setDataValue("'.$input_id.'", "'.$hidden_field.'", "'.$datalist_id.'");
-    });
-   </script>';
+    //     setDataValue("'.$input_id.'", "'.$hidden_field.'", "'.$datalist_id.'");
+    // });
+    document.addEventListener("DOMContentLoaded",function(){!function(e,t,n){const d=document.getElementById(e),l=document.getElementById(t),u=document.getElementById(n);d.addEventListener("input",function(){const e=u.options;let t=!1;for(let n=0;n<e.length;n++)if(e[n].value===d.value){const d=e[n].getAttribute("data-value");l.value=d,t=!0;break}t||(l.value="")}),d.addEventListener("blur",function(){const e=u.options;let t=!1;for(let n=0;n<e.length;n++)if(e[n].value===d.value){const d=e[n].getAttribute("data-value");l.value=d,t=!0;break}t||(l.value="",d.value="",d.placeholder="Not Found")})}("'.$input_id.'","'.$hidden_field.'","'.$datalist_id.'")});
+    </script>';
 }
 ?>
